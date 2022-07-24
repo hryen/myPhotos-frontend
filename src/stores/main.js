@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import settings from "@/config/settings.json";
 import dayjs from "dayjs";
 import "dayjs/locale/zh-cn";
 
@@ -11,9 +12,8 @@ export const useMainStore = defineStore("main", {
     loading: false,
     searchMediaListMap: {},
   }),
-  actions: {
-    getDayjs: () => {
-      return dayjs;
-    },
+  getters: {
+    settings: () => settings,
+    dayjs: () => dayjs,
   },
 });

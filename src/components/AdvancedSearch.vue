@@ -7,7 +7,6 @@ import { storeToRefs } from "pinia";
 const mainStore = useMainStore();
 const { currentMenu, searchInfo, loading, searchMediaListMap } =
   storeToRefs(mainStore);
-const dayjs = mainStore.getDayjs();
 
 const visible = ref(false);
 
@@ -102,7 +101,7 @@ function handleSearch() {
   searchMediaListMap.value = {};
   loading.value = true;
   axios
-    .get("http://127.0.0.1/api/medias/search", {
+    .get(mainStore.settings.serverAddress + "/api/medias/search", {
       params: {
         media_type: mediaType.value,
         make: make.value,
@@ -118,7 +117,7 @@ function handleSearch() {
     })
     .then(function (response) {
       response.data.data.forEach((item) => {
-        const k = dayjs(item.DateTime).format("YYYY年M月D日 dddd");
+        const k = mainStore.dayjs(item.DateTime).format("YYYY年M月D日 dddd");
         if (!searchMediaListMap.value[k]) {
           const list = [];
           list.push(item);

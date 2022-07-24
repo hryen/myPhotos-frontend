@@ -6,7 +6,6 @@ import AMapLoader from "@amap/amap-jsapi-loader";
 import { shallowRef } from "@vue/reactivity";
 
 const mainStore = useMainStore();
-const dayjs = mainStore.getDayjs();
 
 const props = defineProps(["infoVisible"]);
 
@@ -21,7 +20,7 @@ defineExpose({
 
 function getMediaInfo(id) {
   axios
-    .get("http://127.0.0.1/api/medias/" + id + "/info")
+    .get(mainStore.settings.serverAddress + "/api/medias/" + id + "/info")
     .then(function (response) {
       mediaInfo.value = response.data.data;
       showMap();
@@ -34,8 +33,7 @@ function getMediaInfo(id) {
 // media geo map
 function initMap(lon, lat) {
   AMapLoader.load({
-    // TODO: 从配置文件中读取 key
-    key: "",
+    key: mainStore.settings.AMapKey,
     version: "2.0",
     plugins: ["AMap.ToolBar"],
   })
@@ -125,10 +123,10 @@ function showMap() {
         </dt>
         <dd>
           <div class="title">
-            {{ dayjs(mediaInfo.DateTime).format("YYYY年M月D日") }}
+            {{ mainStore.dayjs(mediaInfo.DateTime).format("YYYY年M月D日") }}
           </div>
           <div class="subtitle">
-            {{ dayjs(mediaInfo.DateTime).format("dddd，HH:mm:ss") }}
+            {{ mainStore.dayjs(mediaInfo.DateTime).format("dddd，HH:mm:ss") }}
           </div>
         </dd>
       </div>

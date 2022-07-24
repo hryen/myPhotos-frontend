@@ -3,6 +3,8 @@ import { ref, onMounted } from "vue";
 import notFoundImgUrl from "@/assets/thumbnail_not_found.png";
 import { Fancybox } from "@fancyapps/ui";
 import MediaInfo from "@/components/MediaInfo.vue";
+import { useMainStore } from "@/stores/main";
+const mainStore = useMainStore();
 
 const props = defineProps(["loading", "mediaListMap"]);
 
@@ -163,11 +165,11 @@ function loadMore(e) {
             data-fancybox="gallery"
             :data-type="item.MediaType === 'video' ? 'html5video' : ''"
             :data-id="item.ID"
-            :data-src="'http://127.0.0.1/api/medias/' + item.ID"
+            :data-src="mainStore.settings.serverAddress + '/api/medias/' + item.ID"
           >
             <img
               loading="lazy"
-              :src="'http://127.0.0.1/api/medias/' + item.ID + '/thumbnail'"
+              :src="mainStore.settings.serverAddress + '/api/medias/' + item.ID + '/thumbnail'"
               @error="handleThumbnailError"
             />
 

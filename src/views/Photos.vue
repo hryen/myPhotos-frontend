@@ -6,7 +6,6 @@ import axios from "axios";
 import { useMainStore } from "@/stores/main";
 
 const mainStore = useMainStore();
-const dayjs = mainStore.getDayjs();
 
 const page = ref(1);
 const pageSize = ref(30);
@@ -16,7 +15,7 @@ const mediaListMap = ref({});
 function listMedia() {
   loading.value = true;
   axios
-    .get("http://127.0.0.1/api/medias", {
+    .get(mainStore.settings.serverAddress + "/api/medias", {
       params: {
         page: page.value,
         page_size: pageSize.value,
@@ -24,7 +23,7 @@ function listMedia() {
     })
     .then(function (response) {
       response.data.data.forEach((item) => {
-        const k = dayjs(item.DateTime).format("YYYY年M月D日 dddd");
+        const k = mainStore.dayjs(item.DateTime).format("YYYY年M月D日 dddd");
         if (!mediaListMap.value[k]) {
           const list = [];
           list.push(item);
