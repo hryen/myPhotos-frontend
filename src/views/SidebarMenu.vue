@@ -1,18 +1,13 @@
 <script setup>
-import { useMainStore } from "@/stores/main";
-import { storeToRefs } from "pinia";
-
-const mainStore = useMainStore();
-const { currentMenu } = storeToRefs(mainStore);
+import router from "@/router";
 </script>
 
 <template>
   <div class="menu">
     <a
-      href="#"
       class="menu-item"
-      :class="[currentMenu === 'photos' ? 'active' : '']"
-      @click="currentMenu = 'photos'"
+      :class="[router.currentRoute.value.path === '/' ? 'active' : '']"
+      @click="router.push('/')"
     >
       <!-- Material Icons -->
       <svg
@@ -29,10 +24,9 @@ const { currentMenu } = storeToRefs(mainStore);
     </a>
 
     <a
-      href="#"
       class="menu-item"
-      :class="[currentMenu === 'favorites' ? 'active' : '']"
-      @click="currentMenu = 'favorites'"
+      :class="[router.currentRoute.value.path === '/favorites' ? 'active' : '']"
+      @click="router.push('/favorites')"
     >
       <!-- Material Icons -->
       <svg

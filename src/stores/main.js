@@ -7,7 +7,6 @@ dayjs.locale("zh-cn");
 
 export const useMainStore = defineStore("main", {
   state: () => ({
-    currentMenu: "photos",
     searchInfo: "",
     loading: false,
     searchMediaListMap: {},

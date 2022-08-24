@@ -3,9 +3,10 @@ import { ref } from "vue";
 import axios from "axios";
 import { useMainStore } from "@/stores/main";
 import { storeToRefs } from "pinia";
+import router from "@/router";
 
 const mainStore = useMainStore();
-const { currentMenu, searchInfo, loading, searchMediaListMap } =
+const { searchInfo, loading, searchMediaListMap } =
   storeToRefs(mainStore);
 
 const visible = ref(false);
@@ -96,7 +97,7 @@ function handleSearch() {
   }
   searchInfo.value += "结果如下：";
 
-  currentMenu.value = "search";
+  router.push("/search");
   visible.value = false;
   searchMediaListMap.value = {};
   loading.value = true;
