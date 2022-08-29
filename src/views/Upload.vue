@@ -10,6 +10,13 @@ import "@uppy/dashboard/dist/style.css";
 
 const uppy = new Uppy({ debug: true, autoProceed: false });
 
+// file last modified
+uppy.on("file-added", (file) => {
+  uppy.setFileMeta(file.id, {
+    lastModified: file.data.lastModified,
+  });
+});
+
 const mainStore = useMainStore();
 onMounted(() => {
   uppy.use(XHRUpload, {
