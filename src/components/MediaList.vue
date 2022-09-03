@@ -55,6 +55,7 @@ function initFancybox() {
   };
 
   Fancybox.bind('[data-fancybox="gallery"]', {
+    preload: 3,
     parentEl: document.getElementById("fancybox-parent"),
     dragToClose: false,
     Toolbar: {
