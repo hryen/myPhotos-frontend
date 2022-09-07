@@ -141,9 +141,8 @@ function showMap() {
           </svg>
         </dt>
         <dd>
-          <div class="title" :title="mediaInfo.Path">
-            <!-- 从path中截取文件名 -->
-            {{ mediaInfo.Path.split("/").pop() }}
+          <div class="title" :title="mediaInfo.OriginalFilename">
+            {{ mediaInfo.OriginalFilename }}
           </div>
           <div class="subtitle">
             <span>{{ mediaInfo.Megapixels }}MP</span
