@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
-const routes: RouteRecordRaw[] = [
+const routes = [
   {
     path: "/",
     component: () => import("@/views/Photos.vue"),
@@ -19,7 +19,9 @@ const routes: RouteRecordRaw[] = [
   },
 ];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+export default router;
