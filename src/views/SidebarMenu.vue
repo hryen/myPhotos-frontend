@@ -1,14 +1,8 @@
-<script setup>
-import router from "@/router";
-</script>
+<script setup></script>
 
 <template>
   <div class="menu">
-    <a
-      class="menu-item"
-      :class="[router.currentRoute.value.path === '/upload' ? 'active' : '']"
-      @click="router.push('/upload')"
-    >
+    <router-link to="/upload" class="menu-item">
       <!-- Material Icons -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,13 +15,9 @@ import router from "@/router";
         />
       </svg>
       <span>上传</span>
-    </a>
+    </router-link>
 
-    <a
-      class="menu-item"
-      :class="[router.currentRoute.value.path === '/' ? 'active' : '']"
-      @click="router.push('/')"
-    >
+    <router-link to="/" class="menu-item">
       <!-- Material Icons -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -40,13 +30,8 @@ import router from "@/router";
         />
       </svg>
       <span>照片</span>
-    </a>
-
-    <a
-      class="menu-item"
-      :class="[router.currentRoute.value.path === '/favorites' ? 'active' : '']"
-      @click="router.push('/favorites')"
-    >
+    </router-link>
+    <router-link to="/favorites" class="menu-item">
       <!-- Material Icons -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +44,7 @@ import router from "@/router";
         />
       </svg>
       <span>收藏夹</span>
-    </a>
+    </router-link>
   </div>
 </template>
 
